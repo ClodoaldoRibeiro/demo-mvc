@@ -18,4 +18,6 @@ public interface FuncionarioService {
 	
 	List<Funcionario> buscarPorNome(String nome);
 
+	List<Funcionario> buscarPorCargoId(Long id);
+
 }
