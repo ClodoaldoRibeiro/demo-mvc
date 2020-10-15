@@ -1,0 +1,51 @@
+package com.mbalem.cursos.boot.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.mbalem.cursos.boot.dao.FuncionarioDao;
+import com.mbalem.cursos.boot.domain.Funcionario;
+
+@Service
+@Transactional(readOnly = false)
+public class FuncionarioServiceImp implements FuncionarioService {
+
+	@Autowired
+	private FuncionarioDao funcionarioDao;
+
+	@Override
+	public void Inserir(Funcionario funcionario) {
+		funcionarioDao.save(funcionario);
+	}
+
+	@Override
+	public void Alterar(Funcionario funcionario) {
+		funcionarioDao.update(funcionario);
+	}
+
+	@Override
+	public void Excluir(Long id) {
+		funcionarioDao.delete(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Funcionario buscarPorId(Long id) {
+		return funcionarioDao.findById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Funcionario> buscarTodos() {
+		return funcionarioDao.findAll();
+	}
+
+	@Override
+	public List<Funcionario> buscarPorNome(String nome) {
+		return funcionarioDao.findByNome(nome);
+	}
+
+}
