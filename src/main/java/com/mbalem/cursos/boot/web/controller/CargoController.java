@@ -2,9 +2,12 @@ package com.mbalem.cursos.boot.web.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +36,12 @@ public class CargoController {
 	}
 	
 	@PostMapping("/salvar")
-	public String salvar(Cargo cargo, RedirectAttributes attributes) {
+	public String salvar(@Valid Cargo cargo, BindingResult bindingResult, RedirectAttributes attributes) {
+		
+		if (bindingResult.hasErrors()) {
+			return "/cargo/cadastro";
+		}
+		
 		service.Inserir(cargo);
 		attributes.addFlashAttribute("success", "Cargo inserido com sucesso.");
 		return "redirect:/cargos/cadastrar";
@@ -52,7 +60,11 @@ public class CargoController {
 	}
 
 	@PostMapping("/editar")
-	public String editar(Cargo cargo, RedirectAttributes attributes) {
+	public String editar(@Valid Cargo cargo, BindingResult bindingResult,  RedirectAttributes attributes) {
+		
+		if (bindingResult.hasErrors()) { 
+			return "/cargo/cadastro";
+		}
 		service.Alterar(cargo);
 		attributes.addFlashAttribute("success", "Cargo alterado com sucesso.");
 		return "redirect:/cargos/cadastrar";
