@@ -1,4 +1,4 @@
-package com.mbalem.cursos.boot.conversor;
+package com.mbalem.cursos.boot.web.conversor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
