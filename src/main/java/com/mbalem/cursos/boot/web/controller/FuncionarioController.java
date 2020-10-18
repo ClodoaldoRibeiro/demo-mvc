@@ -3,6 +3,8 @@ package com.mbalem.cursos.boot.web.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -15,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import org.springframework.validation.BindingResult;
+
 import com.mbalem.cursos.boot.domain.Cargo;
 import com.mbalem.cursos.boot.domain.Funcionario;
 import com.mbalem.cursos.boot.domain.UF;
 import com.mbalem.cursos.boot.service.CargoService;
 import com.mbalem.cursos.boot.service.FuncionarioService;
-	
+
 @Controller
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
@@ -42,7 +46,12 @@ public class FuncionarioController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(Funcionario funcionario, RedirectAttributes attributes) {
+	public String salvar(@Valid Funcionario funcionario, BindingResult bindingResult, RedirectAttributes attributes) {
+
+		if (bindingResult.hasErrors()) {
+			return "/funcionario/cadastro";
+		}
+
 		funcionarioService.Inserir(funcionario);
 		attributes.addFlashAttribute("success", "Funcionário inserido com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
@@ -55,7 +64,12 @@ public class FuncionarioController {
 	}
 
 	@PostMapping("/editar")
-	public String editar(Funcionario funcionario, RedirectAttributes attributes) {
+	public String editar(@Valid Funcionario funcionario, BindingResult bindingResult, RedirectAttributes attributes) {
+
+		if (bindingResult.hasErrors()) {
+			return "/funcionario/cadastro";
+		}
+
 		funcionarioService.Alterar(funcionario);
 		attributes.addFlashAttribute("success", "Funcionário alterado com sucesso.");
 		return "redirect:/funcionarios/cadastrar";
@@ -73,21 +87,20 @@ public class FuncionarioController {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorNome(nome));
 		return "/funcionario/lista";
 	}
-	
+
 	@GetMapping("/buscar/cargo")
 	public String getPorCargo(@RequestParam("id") Long id, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorCargoId(id));
 		return "/funcionario/lista";
 	}
-	
-	@GetMapping("/buscar/data")
-    public String getPorDatas(@RequestParam("entrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate entrada,
-                              @RequestParam("saida") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate saida,
-                              ModelMap model) {
 
-        model.addAttribute("funcionarios", funcionarioService.buscarPorDatas(entrada, saida));
-        return "/funcionario/lista";
-    }
+	@GetMapping("/buscar/data")
+	public String getPorDatas(@RequestParam("entrada") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate entrada,
+			@RequestParam("saida") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate saida, ModelMap model) {
+
+		model.addAttribute("funcionarios", funcionarioService.buscarPorDatas(entrada, saida));
+		return "/funcionario/lista";
+	}
 
 	@ModelAttribute("cargos")
 	public List<Cargo> getCargos() {
