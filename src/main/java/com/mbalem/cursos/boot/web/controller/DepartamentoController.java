@@ -57,7 +57,7 @@ public class DepartamentoController {
 			return "/departamento/cadastro";
 		}
 		service.Alterar(departamento);
-		attributes.addFlashAttribute("success", "Departamento alteraçao com sucesso.");
+		attributes.addFlashAttribute("success", "Departamento alterado com sucesso.");
 		return "redirect:/departamentos/cadastrar";
 	}
 
