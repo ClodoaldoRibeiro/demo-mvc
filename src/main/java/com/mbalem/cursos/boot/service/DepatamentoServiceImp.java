@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mbalem.cursos.boot.dao.DepartamentoDao;
 import com.mbalem.cursos.boot.domain.Departamento;
+import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 @Service
 @Transactional(readOnly = false)
@@ -31,26 +32,30 @@ public class DepatamentoServiceImp implements DepatamentoService {
 		departamentoDao.delete(id);
 	}
 
-	@Override @Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true)
 	public Departamento buscarPorId(Long id) {
 		return departamentoDao.findById(id);
 	}
 
-	@Override @Transactional(readOnly = true)
+	@Override
+	@Transactional(readOnly = true)
 	public List<Departamento> buscarTodos() {
 		return departamentoDao.findAll();
 	}
 
 	@Override
 	public boolean departamentoTemCargos(Long id) {
-		
+
 		if (buscarPorId(id).getCargos().isEmpty()) {
 			return false;
 		}
-		
+
 		return true;
 	}
-	
 
+	public PaginacaoUtil<Departamento> buscaPorPagina(int paginaAtual, String ordem) {
+		return departamentoDao.buscaPaginada(paginaAtual, ordem);
+	}
 
 }

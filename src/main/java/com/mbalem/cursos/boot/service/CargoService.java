@@ -3,6 +3,7 @@ package com.mbalem.cursos.boot.service;
 import java.util.List;
 
 import com.mbalem.cursos.boot.domain.Cargo;
+import com.mbalem.cursos.boot.util.PaginacaoUtil;
 	
 public interface CargoService {
 
@@ -17,4 +18,6 @@ public interface CargoService {
 	List<Cargo> buscarTodos();
 	
 	boolean cargoTemFuncionario(Long id);
+	
+	PaginacaoUtil<Cargo> buscaPorPagina(int pagina, String direcao);
 }
