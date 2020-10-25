@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.mbalem.cursos.boot.domain.Funcionario;
+import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 @Repository
 public class FuncionarioDaoImp extends AbstractDao<Funcionario, Long> implements FuncionarioDao {
@@ -45,6 +46,24 @@ public class FuncionarioDaoImp extends AbstractDao<Funcionario, Long> implements
 				.append("order by f.dataEntrada asc")
 				.toString();
 		return createQuery(jpql, saida);
+	}
+
+	public PaginacaoUtil<Funcionario> buscaPaginada(int pagina, String direcao) {
+		int tamanho = 7;
+		int inicio = (pagina - 1) * tamanho; // 0*5=0 1*5=5 2*5=10
+
+		List<Funcionario> funcionarios = getEntityManager()
+				.createQuery("select f from Funcionario f order by f.nome " + direcao, Funcionario.class).setFirstResult(inicio)
+				.setMaxResults(tamanho).getResultList();
+
+		long totalRegistros = count();
+		long totalDePaginas = (totalRegistros + (tamanho - 1)) / tamanho;
+
+		return new PaginacaoUtil<Funcionario>(tamanho, pagina, totalDePaginas, direcao, funcionarios);
+	}
+
+	public long count() {
+		return getEntityManager().createQuery("select count(*) from Funcionario", Long.class).getSingleResult();
 	}
 
 	

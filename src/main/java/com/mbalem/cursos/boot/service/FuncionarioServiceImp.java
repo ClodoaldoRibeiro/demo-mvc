@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mbalem.cursos.boot.dao.FuncionarioDao;
 import com.mbalem.cursos.boot.domain.Funcionario;
+import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 @Service
 @Transactional(readOnly = false)
@@ -67,6 +68,11 @@ public class FuncionarioServiceImp implements FuncionarioService {
         } else {
         	return new ArrayList<>();
         }
+	}
+
+	@Override
+	public PaginacaoUtil<Funcionario> buscaPorPagina(int paginaAtual, String ordem) {
+		return funcionarioDao.buscaPaginada(paginaAtual, ordem);
 	}
 
 }

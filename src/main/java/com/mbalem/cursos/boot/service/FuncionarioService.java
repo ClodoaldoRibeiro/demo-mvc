@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.mbalem.cursos.boot.domain.Funcionario;
+import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 public interface FuncionarioService {
 	
@@ -22,5 +23,7 @@ public interface FuncionarioService {
 	List<Funcionario> buscarPorCargoId(Long id);
 
 	List<Funcionario> buscarPorDatas(LocalDate entrada, LocalDate saida);
+
+	PaginacaoUtil<Funcionario> buscaPorPagina(int paginaAtual, String ordem);
 
 }

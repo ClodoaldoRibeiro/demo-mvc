@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.mbalem.cursos.boot.domain.Funcionario;
+import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 public interface FuncionarioDao {
 	void save(Funcionario funcionario);
@@ -25,4 +26,6 @@ public interface FuncionarioDao {
 	List<Funcionario> findByDataEntrada(LocalDate entrada);
 
 	List<Funcionario> findByDataSaida(LocalDate saida);
+	
+	PaginacaoUtil<Funcionario> buscaPaginada(int pagina, String direcao);
 }

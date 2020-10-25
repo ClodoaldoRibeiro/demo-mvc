@@ -44,20 +44,22 @@ public class FuncionarioController {
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 	}
 
+	
 	@GetMapping("/listar")
-	public String listar(ModelMap modelMap) {
-		modelMap.addAttribute("funcionarios", funcionarioService.buscarTodos());
-		return "/funcionario/lista";
+	public String listar(ModelMap model) {
+		model.addAttribute("funcionarios", funcionarioService.buscarTodos());
+		return "funcionario/lista"; 
 	}
+	
 
 	@PostMapping("/salvar")
 	public String salvar(@Valid Funcionario funcionario, BindingResult bindingResult, RedirectAttributes attributes) {
 
 		if (bindingResult.hasErrors()) {
-			return "/funcionario/cadastro";
+			return "funcionario/cadastro";
 		}
 
 		funcionarioService.Inserir(funcionario);
@@ -68,14 +70,14 @@ public class FuncionarioController {
 	@GetMapping("/editar/{id}")
 	public String moverDadosFormularioEditar(@PathVariable("id") Long id, ModelMap modelMap) {
 		modelMap.addAttribute("funcionario", funcionarioService.buscarPorId(id));
-		return "/funcionario/cadastro";
+		return "funcionario/cadastro";
 	}
 
 	@PostMapping("/editar")
 	public String editar(@Valid Funcionario funcionario, BindingResult bindingResult, RedirectAttributes attributes) {
 
 		if (bindingResult.hasErrors()) {
-			return "/funcionario/cadastro";
+			return "funcionario/cadastro";
 		}
 
 		funcionarioService.Alterar(funcionario);
@@ -87,19 +89,19 @@ public class FuncionarioController {
 	public String excluirPorId(@PathVariable("id") Long id, ModelMap modelMap) {
 		funcionarioService.Excluir(id);
 		modelMap.addAttribute("success", "Funcionário excluído com sucesso.");
-		return listar(modelMap);
+		return "funcionario/lista";
 	}
 
 	@GetMapping("/buscar/nome")
 	public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorNome(nome));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 
 	@GetMapping("/buscar/cargo")
 	public String getPorCargo(@RequestParam("id") Long id, ModelMap model) {
 		model.addAttribute("funcionarios", funcionarioService.buscarPorCargoId(id));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 
 	@GetMapping("/buscar/data")
@@ -107,7 +109,7 @@ public class FuncionarioController {
 			@RequestParam("saida") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate saida, ModelMap model) {
 
 		model.addAttribute("funcionarios", funcionarioService.buscarPorDatas(entrada, saida));
-		return "/funcionario/lista";
+		return "funcionario/lista";
 	}
 
 	@ModelAttribute("cargos")
