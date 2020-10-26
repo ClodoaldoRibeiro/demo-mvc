@@ -43,6 +43,16 @@ public class MarcaServiceImp implements MarcaService {
 	}
 
 	@Override
+	public boolean marcaTemVeiculos(Long id) {
+		if (buscarPorId(id).getVeiculo().isEmpty()) {
+			return false;
+		}
+
+		return true;
+
+	}
+
+	@Override
 	public PaginacaoUtil<Marca> buscaPorPagina(int paginaAtual, String ordem) {
 		// TODO Auto-generated method stub
 		return null;

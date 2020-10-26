@@ -19,4 +19,6 @@ public interface MarcaService {
 
 	PaginacaoUtil<Marca> buscaPorPagina(int paginaAtual, String ordem);
 
+	boolean marcaTemVeiculos(Long id);
+
 }
