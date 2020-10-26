@@ -47,4 +47,14 @@ public class CombustivelServiceImp implements CombustivelService {
 		return null;
 	}
 
+	@Override
+	public boolean combustivelTemVeiculos(Long id) {
+
+		if (buscarPorId(id).getVeiculo().isEmpty()) {
+			return false;
+		}
+
+		return true;
+	}
+
 }

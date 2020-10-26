@@ -19,4 +19,6 @@ public interface CombustivelService {
 
 	PaginacaoUtil<Combustivel> buscaPorPagina(int paginaAtual, String ordem);
 
+	boolean combustivelTemVeiculos(Long id);
+
 }
