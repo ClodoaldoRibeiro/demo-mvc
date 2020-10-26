@@ -48,8 +48,8 @@ public class Veiculo extends AbstractEntity<Long> {
 
 	@NotNull
 	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "anaModelo", nullable = false, columnDefinition = "DATE")
-	private LocalDate anaModelo;
+	@Column(name = "anoModelo", nullable = false, columnDefinition = "DATE")
+	private LocalDate anoModelo;
 
 	@NotNull(message = "UF é obrigatória")
 	@Column(nullable = false, length = 2)
@@ -111,12 +111,12 @@ public class Veiculo extends AbstractEntity<Long> {
 		this.anoFrabricacao = anoFrabricacao;
 	}
 
-	public LocalDate getAnaModelo() {
-		return anaModelo;
+	public LocalDate getAnoModelo() {
+		return anoModelo;
 	}
 
-	public void setAnaModelo(LocalDate anaModelo) {
-		this.anaModelo = anaModelo;
+	public void setAnoModelo(LocalDate anaModelo) {
+		this.anoModelo = anaModelo;
 	}
 
 	public UF getUf() {

@@ -19,4 +19,6 @@ public interface TiposVeiculosService {
 
 	PaginacaoUtil<TiposVeiculos> buscaPorPagina(int pagina, String direcao);
 
+	boolean tiposVeiculosTemVeiculos(Long id);
+
 }

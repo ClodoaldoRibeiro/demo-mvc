@@ -47,4 +47,14 @@ public class TiposVeiculosServiceImp implements TiposVeiculosService {
 		return tiposVeiculosDao.buscaPaginada(pagina, direcao);
 	}
 
+	@Override
+	public boolean tiposVeiculosTemVeiculos(Long id) {
+
+		if (buscarPorId(id).getVeiculo().isEmpty()) {
+			return false;
+		}
+
+		return true;
+	}
+
 }

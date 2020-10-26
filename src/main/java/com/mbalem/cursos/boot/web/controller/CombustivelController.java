@@ -65,13 +65,13 @@ public class CombustivelController {
 	public String moverDadosFormularioExcluir(@PathVariable("id") Long id, ModelMap modelMap) {
 
 		if (combustivelService.combustivelTemVeiculos(id)) {
-			modelMap.addAttribute("fail", "Combustível não removido. Possui cargo(s) vinculado(s).");
+			modelMap.addAttribute("fail", "Combustível não removido. Possui Veículo(s) vinculado(s).");
 		} else {
 			combustivelService.Excluir(id);
 			modelMap.addAttribute("success", "Combustível excluído com sucesso.");
 		}
 
-		return "redirect:/combustiveis/listar";
+		return listar(modelMap);
 	}
 
 

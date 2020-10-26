@@ -86,7 +86,7 @@ public class CargoController {
 	public String moverDadosFormularioExcluir(@PathVariable("id") Long id, ModelMap modelMap) {
 
 		if (cargoService.cargoTemFuncionario(id)) {
-			modelMap.addAttribute("fail", "Cargo não removido. Possui cargo(s) vinculado(s).");
+			modelMap.addAttribute("fail", "Cargo não removido. Possui Departamento(s) vinculado(s).");
 		} else {
 			cargoService.Excluir(id);
 			modelMap.addAttribute("success", "Cargo excluído com sucesso.");
