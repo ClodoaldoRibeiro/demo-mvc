@@ -30,12 +30,6 @@ public class DepartamentoController {
 	public String cadastrar(Departamento departamento) {
 		return "/departamento/cadastro";
 	}
-
-	@GetMapping("/listar--")
-	public String listare(ModelMap modelMap) {
-		modelMap.addAttribute("departamentos", derpartamentoService.buscarTodos());
-		return "departamento/lista";
-	}
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model, 
