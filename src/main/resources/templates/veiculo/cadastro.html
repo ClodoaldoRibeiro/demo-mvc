@@ -13,7 +13,7 @@
 					<li class="nav-item active"><i class="oi oi-caret-right"></i>
 						<span>Cadastrar Veículo</span></li>
 				</ul>
-				<a class="btn btn-primary btn-md" th:href="@{/marcas/listar}"
+				<a class="btn btn-primary btn-md" th:href="@{/veiculos/listar}"
 					role="button"> <span class="oi oi-spreadsheet" title="Listar"
 					aria-hidden="true"></span> <span>Listar Veículos</span>
 				</a>
@@ -22,19 +22,112 @@
 
 		<div class="container" id="cadastro">
 			<div th:replace="fragmentos/alert"></div>
-			<form th:action="${marca.id == null} ? @{/marcas/salvar} : @{/marcas/editar}"
-					th:object="${marca}" method="POST">
-					
+			<form
+				th:action="${veiculo.id == null} ? @{/veiculos/salvar} : @{/veiculos/editar}"
+				th:object="${veiculo}" method="POST">
+
 				<div th:replace="fragmentos/validacao  :: validacao"></div>
-				
+
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Marca</label> <input type="text"
-							class="form-control" id="nome" placeholder="Nome da marca"
-							autofocus="autofocus" th:field="*{nome}" />
+						<label for="nome">Modelo</label> <input type="text"
+							class="form-control" id="modelo" placeholder="Nome do modelo"
+							autofocus="autofocus" th:field="*{modelo}" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="anoModelo">Ano modelo</label> <input type="text"
+							class="form-control" id="anoModelo" th:field="*{anoModelo}"
+							th:classappend="${#fields.hasErrors('anoModelo')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{anoModelo}"></span>
+						</div>
 					</div>
 				</div>
-				<input type="hidden" id="id" th:field="*{id}"/>
+
+				<div class="form-row">
+					<div class="form-group col-md-3">
+						<label for="placa">Placa</label> <input type="text"
+							class="form-control" id="placa" placeholder="Placa do veículo"
+							autofocus="autofocus" th:field="*{placa}" />
+					</div>
+					<div class="form-group col-md-3">
+						<label for="uf">UF</label> <select id="uf" class="form-control"
+							th:field="*{uf}"
+							th:classappend="${#fields.hasErrors('uf')} ? 'is-invalid'">
+							<option value="">Selecione...</option>
+							<option th:each="uf : ${ufs}" th:value="${uf}"
+								th:text="${uf.sigla}"></option>
+						</select>
+						<div class="invalid-feedback">
+							<span th:errors="*{uf}"></span>
+						</div>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="anoFabricacao">Ano de Fabricação</label> <input
+							type="text" class="form-control" id="anoFabricacao"
+							th:field="*{anoFabricacao}"
+							th:classappend="${#fields.hasErrors('anoFabricacao')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{anoFabricacao}"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="chassi">Chassi</label> <input type="text"
+							class="form-control" id="renavam"
+							placeholder="Numeração do chassi do veículo"
+							autofocus="autofocus" th:field="*{chassi}" />
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="renavam">Renavam</label> <input type="text"
+							class="form-control" id="renavam"
+							placeholder="Renavam do veículo" autofocus="autofocus"
+							th:field="*{renavam}" />
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="marca">Marca</label> <select id="marca"
+							class="form-control" th:field="*{marca}"
+							th:classappend="${#fields.hasErrors('marca')} ? 'is-invalid'">
+							<option value="">Selecione...</option>
+							<option th:each="m : ${marcas}" th:value="${m}"
+								th:text="${m.nome}"></option>
+						</select>
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="${tiposVeiculos}">Tipo</label> <select
+							id="${tiposVeiculos}" class="form-control"
+							th:field="*{tiposVeiculos}"
+							th:classappend="${#fields.hasErrors('${tiposVeiculos}')} ? 'is-invalid'">
+							<option value="">Selecione...</option>
+							<option th:each="tv : ${tiposVeiculos}" th:value="${tv}"
+								th:text="${tv.nome}"></option>
+						</select>
+					</div>
+
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="combustiveis">Combustível</label> <select
+							id="combustivel" class="form-control" th:field="*{combustivel}"
+							th:classappend="${#fields.hasErrors('combustivel')} ? 'is-invalid'">
+							<option value="">Selecione...</option>
+							<option th:each="c : ${combustiveis}" th:value="${c}"
+								th:text="${c.nome}"></option>
+						</select>
+					</div>
+
+				</div>
+
+
+				<input type="hidden" id="id" th:field="*{id}" />
 				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 			</form>
 		</div>

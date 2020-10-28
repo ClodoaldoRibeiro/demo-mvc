@@ -38,9 +38,9 @@ public class Veiculo extends AbstractEntity<Long> {
 	private String chassi;
 
 	@NotNull
-	@Column(name = "anoFrabricacao", nullable = false, length = 5)
+	@Column(name = "anoFabricacao", nullable = false, length = 5)
 	@Digits(integer = 5, fraction = 0)
-	private Integer anoFrabricacao;
+	private Integer anoFabricacao;
 
 	@NotNull
 	@Column(name = "anoModelo", nullable = false, length = 5)
@@ -99,12 +99,12 @@ public class Veiculo extends AbstractEntity<Long> {
 		this.chassi = chassi;
 	}
 
-	public Integer getAnoFrabricacao() {
-		return anoFrabricacao;
+	public Integer getAnoFabricacao() {
+		return anoFabricacao;
 	}
 
-	public void setAnoFrabricacao(Integer anoFrabricacao) {
-		this.anoFrabricacao = anoFrabricacao;
+	public void setAnoFabricacao(Integer anoFabricacao) {
+		this.anoFabricacao = anoFabricacao;
 	}
 
 	public Integer getAnoModelo() {
