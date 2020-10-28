@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span>Cadastrar Veículo</span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/marcas/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span>Listar Veículos</span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+			<div th:replace="fragmentos/alert"></div>
+			<form th:action="${marca.id == null} ? @{/marcas/salvar} : @{/marcas/editar}"
+					th:object="${marca}" method="POST">
+					
+				<div th:replace="fragmentos/validacao  :: validacao"></div>
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="nome">Marca</label> <input type="text"
+							class="form-control" id="nome" placeholder="Nome da marca"
+							autofocus="autofocus" th:field="*{nome}" />
+					</div>
+				</div>
+				<input type="hidden" id="id" th:field="*{id}"/>
+				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>

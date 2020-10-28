@@ -1,7 +1,5 @@
 package com.mbalem.cursos.boot.domain;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,12 +7,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @SuppressWarnings("serial")
 @Entity
@@ -37,19 +33,19 @@ public class Veiculo extends AbstractEntity<Long> {
 	private String placa;
 
 	@NotBlank
-	@Size(max = 20)
+	@Size(max = 17, min = 17)
 	@Column(nullable = false, unique = true)
 	private String chassi;
 
 	@NotNull
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "anoFrabricacao", nullable = false, columnDefinition = "DATE")
-	private LocalDate anoFrabricacao;
+	@Column(name = "anoFrabricacao", nullable = false, length = 5)
+	@Digits(integer = 5, fraction = 0)
+	private Integer anoFrabricacao;
 
 	@NotNull
-	@DateTimeFormat(iso = ISO.DATE)
-	@Column(name = "anoModelo", nullable = false, columnDefinition = "DATE")
-	private LocalDate anoModelo;
+	@Column(name = "anoModelo", nullable = false, length = 5)
+	@Digits(integer = 5, fraction = 0)
+	private Integer anoModelo;
 
 	@NotNull(message = "UF é obrigatória")
 	@Column(nullable = false, length = 2)
@@ -103,19 +99,19 @@ public class Veiculo extends AbstractEntity<Long> {
 		this.chassi = chassi;
 	}
 
-	public LocalDate getAnoFrabricacao() {
+	public Integer getAnoFrabricacao() {
 		return anoFrabricacao;
 	}
 
-	public void setAnoFrabricacao(LocalDate anoFrabricacao) {
+	public void setAnoFrabricacao(Integer anoFrabricacao) {
 		this.anoFrabricacao = anoFrabricacao;
 	}
 
-	public LocalDate getAnoModelo() {
+	public Integer getAnoModelo() {
 		return anoModelo;
 	}
 
-	public void setAnoModelo(LocalDate anaModelo) {
+	public void setAnoModelo(Integer anaModelo) {
 		this.anoModelo = anaModelo;
 	}
 
