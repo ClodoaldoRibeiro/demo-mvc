@@ -26,17 +26,21 @@
 				th:action="${veiculo.id == null} ? @{/veiculos/salvar} : @{/veiculos/editar}"
 				th:object="${veiculo}" method="POST">
 
-				<div th:replace="fragmentos/validacao  :: validacao"></div>
-
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="nome">Modelo</label> <input type="text"
-							class="form-control" id="modelo" placeholder="Nome do modelo"
-							autofocus="autofocus" th:field="*{modelo}" />
+						<label for="modelo">Modelo</label> <input type="text"
+							class="form-control" id="modelo" placeholder="Modelo do veículo"
+							autofocus="autofocus" th:field="*{modelo}"
+							th:classappend="${#fields.hasErrors('modelo')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{modelo}"></span>
+						</div>
 					</div>
+
 					<div class="form-group col-md-6">
 						<label for="anoModelo">Ano modelo</label> <input type="text"
-							class="form-control" id="anoModelo" th:field="*{anoModelo}"
+							class="form-control" id="anoModelo"
+							placeholder="Placa do veículo" th:field="*{anoModelo}"
 							th:classappend="${#fields.hasErrors('anoModelo')} ? 'is-invalid'" />
 						<div class="invalid-feedback">
 							<span th:errors="*{anoModelo}"></span>
@@ -48,8 +52,13 @@
 					<div class="form-group col-md-3">
 						<label for="placa">Placa</label> <input type="text"
 							class="form-control" id="placa" placeholder="Placa do veículo"
-							autofocus="autofocus" th:field="*{placa}" />
+							th:field="*{placa}"
+							th:classappend="${#fields.hasErrors('placa')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{placa}"></span>
+						</div>
 					</div>
+
 					<div class="form-group col-md-3">
 						<label for="uf">UF</label> <select id="uf" class="form-control"
 							th:field="*{uf}"
@@ -65,6 +74,7 @@
 					<div class="form-group col-md-6">
 						<label for="anoFabricacao">Ano de Fabricação</label> <input
 							type="text" class="form-control" id="anoFabricacao"
+							placeholder="Ano de fabricação do veículo"
 							th:field="*{anoFabricacao}"
 							th:classappend="${#fields.hasErrors('anoFabricacao')} ? 'is-invalid'" />
 						<div class="invalid-feedback">
@@ -78,14 +88,22 @@
 						<label for="chassi">Chassi</label> <input type="text"
 							class="form-control" id="renavam"
 							placeholder="Numeração do chassi do veículo"
-							autofocus="autofocus" th:field="*{chassi}" />
+							autofocus="autofocus" th:field="*{chassi}"
+							th:classappend="${#fields.hasErrors('chassi')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{chassi}"></span>
+						</div>
 					</div>
 
 					<div class="form-group col-md-6">
 						<label for="renavam">Renavam</label> <input type="text"
 							class="form-control" id="renavam"
 							placeholder="Renavam do veículo" autofocus="autofocus"
-							th:field="*{renavam}" />
+							th:field="*{renavam}"
+							th:classappend="${#fields.hasErrors('renavam')} ? 'is-invalid'" />
+						<div class="invalid-feedback">
+							<span th:errors="*{renavam}"></span>
+						</div>
 					</div>
 				</div>
 
@@ -101,10 +119,9 @@
 					</div>
 
 					<div class="form-group col-md-6">
-						<label for="${tiposVeiculos}">Tipo</label> <select
-							id="${tiposVeiculos}" class="form-control"
-							th:field="*{tiposVeiculos}"
-							th:classappend="${#fields.hasErrors('${tiposVeiculos}')} ? 'is-invalid'">
+						<label for="tiposVeiculos">Tipo</label> <select id="tiposVeiculos"
+							class="form-control" th:field="*{tiposVeiculos}"
+							th:classappend="${#fields.hasErrors('tiposVeiculos')} ? 'is-invalid'">
 							<option value="">Selecione...</option>
 							<option th:each="tv : ${tiposVeiculos}" th:value="${tv}"
 								th:text="${tv.nome}"></option>
