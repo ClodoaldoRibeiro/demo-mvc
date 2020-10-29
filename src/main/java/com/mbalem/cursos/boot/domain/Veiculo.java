@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @Table(name = "VEICULOS")
 public class Veiculo extends AbstractEntity<Long> {
 
-	@NotBlank
+	@NotBlank (message = "Informe o modelo do seu veículo")
 	@Size(max = 60, min = 3)
 	@Column(nullable = false)
 	private String modelo;
@@ -32,23 +32,20 @@ public class Veiculo extends AbstractEntity<Long> {
 	@Column(nullable = false, unique = true)
 	private String placa;
 
-	@NotBlank
+	@NotBlank(message = "Número do chassi é obrigatório")
 	@Size(max = 17, min = 17)
 	@Column(nullable = false, unique = true)
 	private String chassi;
 
-	@NotNull
-	@Column(name = "anoFabricacao", nullable = false, length = 5)
+	@Column(name = "anoFabricacao", length = 5)
 	@Digits(integer = 5, fraction = 0)
 	private Integer anoFabricacao;
 
-	@NotNull
-	@Column(name = "anoModelo", nullable = false, length = 5)
+	@Column(name = "anoModelo", length = 5)
 	@Digits(integer = 5, fraction = 0)
 	private Integer anoModelo;
 
-	@NotNull(message = "UF é obrigatória")
-	@Column(nullable = false, length = 2)
+	@Column( length = 2)
 	@Enumerated(EnumType.STRING)
 	private UF uf;
 

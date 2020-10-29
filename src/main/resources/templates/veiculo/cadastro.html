@@ -39,8 +39,8 @@
 
 					<div class="form-group col-md-6">
 						<label for="anoModelo">Ano modelo</label> <input type="text"
-							class="form-control" id="anoModelo"
-							placeholder="Placa do veículo" th:field="*{anoModelo}"
+							class="form-control" id="anoModelo" placeholder="Ano do modelo"
+							th:field="*{anoModelo}"
 							th:classappend="${#fields.hasErrors('anoModelo')} ? 'is-invalid'" />
 						<div class="invalid-feedback">
 							<span th:errors="*{anoModelo}"></span>
@@ -108,24 +108,33 @@
 				</div>
 
 				<div class="form-row">
+
 					<div class="form-group col-md-6">
-						<label for="marca">Marca</label> <select id="marca"
+						<label for="marcas">Marca</label> <select id="marca"
 							class="form-control" th:field="*{marca}"
 							th:classappend="${#fields.hasErrors('marca')} ? 'is-invalid'">
 							<option value="">Selecione...</option>
-							<option th:each="m : ${marcas}" th:value="${m}"
+							<option th:each="m : ${marcas}" th:value="${m.id}"
 								th:text="${m.nome}"></option>
 						</select>
+						<div class="invalid-feedback">
+							<span th:errors="*{marca}"></span>
+						</div>
 					</div>
+
 
 					<div class="form-group col-md-6">
 						<label for="tiposVeiculos">Tipo</label> <select id="tiposVeiculos"
 							class="form-control" th:field="*{tiposVeiculos}"
 							th:classappend="${#fields.hasErrors('tiposVeiculos')} ? 'is-invalid'">
 							<option value="">Selecione...</option>
-							<option th:each="tv : ${tiposVeiculos}" th:value="${tv}"
+							<option th:each="tv : ${tiposVeiculos}" th:value="${tv.id}"
 								th:text="${tv.nome}"></option>
 						</select>
+
+						<div class="invalid-feedback">
+							<span th:errors="*{marca}"></span>
+						</div>
 					</div>
 
 				</div>
@@ -136,9 +145,12 @@
 							id="combustivel" class="form-control" th:field="*{combustivel}"
 							th:classappend="${#fields.hasErrors('combustivel')} ? 'is-invalid'">
 							<option value="">Selecione...</option>
-							<option th:each="c : ${combustiveis}" th:value="${c}"
+							<option th:each="c : ${combustiveis}" th:value="${c.id}"
 								th:text="${c.nome}"></option>
 						</select>
+						<div class="invalid-feedback">
+							<span th:errors="*{combustivel}"></span>
+						</div>
 					</div>
 
 				</div>
