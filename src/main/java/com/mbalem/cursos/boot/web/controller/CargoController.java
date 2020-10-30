@@ -24,46 +24,44 @@ import com.mbalem.cursos.boot.service.DepatamentoServiceImp;
 import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 @Controller
-@RequestMapping("/cargos")	
+@RequestMapping("/cargos")
 public class CargoController {
-	
+
 	@Autowired
 	private CargoServiceImp cargoService;
 	@Autowired
 	private DepatamentoServiceImp depatamentoService;
-	
-	
+
 	@GetMapping("/cadastrar")
 	public String cadastrar(Cargo cargo) {
 		return "cargo/cadastro";
 	}
-	
+
 	@PostMapping("/salvar")
 	public String salvar(@Valid Cargo cargo, BindingResult bindingResult, RedirectAttributes attributes) {
-		
+
 		if (bindingResult.hasErrors()) {
 			return "cargo/cadastro";
 		}
-		
+
 		cargoService.Inserir(cargo);
 		attributes.addFlashAttribute("success", "Cargo inserido com sucesso.");
 		return "redirect:/cargos/cadastrar";
 	}
 
 	@GetMapping("/listar")
-	public String listar(ModelMap model, 
-						 @RequestParam("page") Optional<Integer> page, 
-						 @RequestParam("dir") Optional<String> dir) {
-		
+	public String listar(ModelMap model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam("dir") Optional<String> dir) {
+
 		int paginaAtual = page.orElse(1);
-		String ordem = dir.orElse("asc");		
-		
+		String ordem = dir.orElse("asc");
+
 		PaginacaoUtil<Cargo> pageCargo = cargoService.buscaPorPagina(paginaAtual, ordem);
-		
+
 		model.addAttribute("pageCargo", pageCargo);
-		return "cargo/lista"; 
+		return "cargo/lista";
 	}
-	
+
 	@GetMapping("/editar/{id}")
 	public String moverDadosFormularioEditar(@PathVariable("id") Long id, ModelMap modelMap) {
 		modelMap.addAttribute("cargo", cargoService.buscarPorId(id));
@@ -71,17 +69,16 @@ public class CargoController {
 	}
 
 	@PostMapping("/editar")
-	public String editar(@Valid Cargo cargo, BindingResult bindingResult,  RedirectAttributes attributes) {
-		
-		if (bindingResult.hasErrors()) { 
+	public String editar(@Valid Cargo cargo, BindingResult bindingResult, RedirectAttributes attributes) {
+
+		if (bindingResult.hasErrors()) {
 			return "cargo/cadastro";
 		}
 		cargoService.Alterar(cargo);
 		attributes.addFlashAttribute("success", "Cargo alterado com sucesso.");
 		return "redirect:/cargos/cadastrar";
 	}
-	
-	
+
 	@GetMapping("/excluir/{id}")
 	public String moverDadosFormularioExcluir(@PathVariable("id") Long id, ModelMap modelMap) {
 
@@ -92,13 +89,12 @@ public class CargoController {
 			modelMap.addAttribute("success", "Cargo excluído com sucesso.");
 		}
 
-		return "cargo/cadastro";
+		return "redirect:/cargos/listar";
 	}
-	
+
 	@ModelAttribute("departamentos")
-	public List<Departamento> listarDepartamento(){
+	public List<Departamento> listarDepartamento() {
 		return depatamentoService.buscarTodos();
 	}
 
 }
-

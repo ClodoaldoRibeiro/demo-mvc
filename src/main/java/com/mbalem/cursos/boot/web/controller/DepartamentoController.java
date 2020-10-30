@@ -30,19 +30,18 @@ public class DepartamentoController {
 	public String cadastrar(Departamento departamento) {
 		return "departamento/cadastro";
 	}
-	
+
 	@GetMapping("/listar")
-	public String listar(ModelMap model, 
-						 @RequestParam("page") Optional<Integer> page, 
-						 @RequestParam("dir") Optional<String> dir) {
-		
+	public String listar(ModelMap model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam("dir") Optional<String> dir) {
+
 		int paginaAtual = page.orElse(1);
-		String ordem = dir.orElse("asc");		
-		
+		String ordem = dir.orElse("asc");
+
 		PaginacaoUtil<Departamento> pageDerpartamento = derpartamentoService.buscaPorPagina(paginaAtual, ordem);
-		
+
 		model.addAttribute("pageDepartamento", pageDerpartamento);
-		
+
 		return "departamento/lista";
 	}
 
@@ -84,7 +83,8 @@ public class DepartamentoController {
 			modelMap.addAttribute("success", "Departamento excluído com sucesso.");
 		}
 
-		return "departamento/lista";
+		return "redirect:/departamentos/listar";
+
 	}
 
 }
