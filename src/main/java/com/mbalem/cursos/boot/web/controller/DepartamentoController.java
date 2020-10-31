@@ -38,6 +38,9 @@ public class DepartamentoController {
 		int paginaAtual = page.orElse(1);
 		String ordem = dir.orElse("asc");
 
+		System.out.println("paginaAtual: " + paginaAtual);
+		System.out.println("ordem: " + ordem);
+
 		PaginacaoUtil<Departamento> pageDerpartamento = derpartamentoService.buscaPorPagina(paginaAtual, ordem);
 
 		model.addAttribute("pageDepartamento", pageDerpartamento);
@@ -74,17 +77,16 @@ public class DepartamentoController {
 	}
 
 	@GetMapping("/excluir/{id}")
-	public String moverDadosFormularioExcluir(@PathVariable("id") Long id, ModelMap modelMap) {
+	public String moverDadosFormularioExcluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 
 		if (derpartamentoService.departamentoTemCargos(id)) {
-			modelMap.addAttribute("fail", "Departamento não removido. Possui cargo(s) vinculado(s).");
+			attr.addFlashAttribute("fail", "Departamento não removido. Possui cargo(s) vinculado(s).");
 		} else {
 			derpartamentoService.Excluir(id);
-			modelMap.addAttribute("success", "Departamento excluído com sucesso.");
+			attr.addFlashAttribute("success", "Departamento excluído com sucesso.");
 		}
 
 		return "redirect:/departamentos/listar";
-
 	}
 
 }
