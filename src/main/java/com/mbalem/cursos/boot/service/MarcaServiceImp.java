@@ -53,8 +53,7 @@ public class MarcaServiceImp implements MarcaService {
 
 	@Override
 	public PaginacaoUtil<Marca> buscaPorPagina(int paginaAtual, String ordem) {
-		// TODO Auto-generated method stub
-		return null;
+		return marcaDao.buscaPaginada(paginaAtual, ordem);
 	}
 
 }

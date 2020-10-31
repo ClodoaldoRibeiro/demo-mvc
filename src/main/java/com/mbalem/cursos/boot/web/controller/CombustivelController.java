@@ -38,8 +38,8 @@ public class CombustivelController {
 		int paginaAtual = page.orElse(1);
 		String ordem = dir.orElse("asc");
 
-		System.out.println("paginaAtual" + paginaAtual);
-		System.out.println("ordem" + ordem);
+		System.out.println("paginaAtual: " + paginaAtual);
+		System.out.println("ordem: " + ordem);
 
 		PaginacaoUtil<Combustivel> pageCombustivel = combustivelService.buscaPorPagina(paginaAtual, ordem);
 

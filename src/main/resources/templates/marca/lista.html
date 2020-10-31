@@ -1,59 +1,91 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-<head><meta charset="UTF-8"/></head>
+<head>
+<meta charset="UTF-8" />
+</head>
 <body>
 
-	    <section class="layout-content" layout:fragment="corpo">
-	
-	        <nav class="navbar navbar-expand-md bg-light">
-	            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-	                <ul class="navbar-nav mr-auto">
-	                    <li class="nav-item active">
-	                        <i class="oi oi-caret-right"></i>
-	                        <span>Lista de Marcas</span>
-	                    </li>
-	                </ul>
-	                <a class="btn btn-primary btn-md" th:href="@{/marcas/cadastrar}" role="button">
-	                    <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
-	                    <span>Novo Marca</span>
-	                </a>
-	            </div>
-	        </nav>
-	
-	        <div class="container" id="listagem">
-	
-				<div th:replace="fragmentos/alert"></div>
-	
-	            <div class="table-responsive">
-					<table class="table table-striped table-hover table-sm">
-					    <thead>
-					    <tr>
-					        <th>Código</th>
-					        <th>Nome</th>
-					        <th>Ação</th>
-					    </tr>
-					    </thead>
-					    <tbody>
-					     <tr th:each="m : ${marcas}">
-					         <td th:text="${m.id}">1</td>
-					         <td th:text="${m.nome}">BMW</td>
-					         <td colspan="2">
-					             <a class="btn btn-info btn-sm" th:href="@{/marcas/editar/{id} (id=${m.id}) }" role="button">
-					                 <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-					             </a>
-					             <button th:id="${ 'btn_marcas/excluir/' + m.id}" type="button" class="btn btn-danger btn-sm"
-					             		data-toggle="modal" data-target="#myModal">
-					                 <span class="oi oi-circle-x" title="Exclusão" aria-hidden="true"></span>
-					             </button>
-					         </td>
-					     </tr>
-					    </tbody>
-					</table>
-	            </div>
-	        </div>
-	        
-			<div th:replace="fragmentos/modal :: modal"></div>
-			
-	    </section>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span>Lista de Marcas</span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/marcas/cadastrar}"
+					role="button"> <span class="oi oi-plus" title="Cadastro"
+					aria-hidden="true"></span> <span>Novo Marca</span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="listagem">
+
+			<div th:replace="fragmentos/alert"></div>
+
+			<div class="table-responsive">
+				<table class="table table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>Código</th>
+							<th>Nome <a class=""
+								th:href="@{/marcas/listar(page=${pageMarca.pagina}, dir=desc)}"
+								tabindex="-1"> <span class="oi oi-arrow-bottom"></span>
+							</a> <a class=""
+								th:href="@{/marcas/listar(page=${pageMarca.pagina}, dir=asc)}"
+								tabindex="-1"> <span class="oi oi-arrow-top"></span>
+							</a>
+							</th>
+							<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="m : ${pageMarca.registros}">
+							<td th:text="${m.id}">1</td>
+							<td th:text="${m.nome}">BMW</td>
+							<td colspan="2"><a class="btn btn-info btn-sm"
+								th:href="@{/marcas/editar/{id} (id=${m.id}) }" role="button">
+									<span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+							</a>
+								<button th:id="${ 'btn_marcas/excluir/' + m.id}" type="button"
+									class="btn btn-danger btn-sm" data-toggle="modal"
+									data-target="#myModal">
+									<span class="oi oi-circle-x" title="Exclusão"
+										aria-hidden="true"></span>
+								</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation">
+					<ul class="pagination pagination-sm justify-content-center">
+						<li class="page-item"><a class="page-link"
+							th:href="@{/marcas/listar(page=${1}, dir=${pageMarca.direcao})}"
+							tabindex="-1">Primeira</a></li>
+						<li
+							th:class="${pageMarca.pagina == 1} ? 'page-item disabled' : 'page-item'">
+							<a class="page-link"
+							th:href="@{/marcas/listar(page=${pageMarca.pagina - 1}, dir=${pageMarca.direcao})}"
+							tabindex="-1">Anterior</a>
+						</li>
+						<li class="page-item"><span class="page-link"
+							th:text="|${pageMarca.pagina} de ${pageMarca.totalDePaginas}|"></span>
+						</li>
+						<li
+							th:class="${pageMarca.pagina == pageMarca.totalDePaginas} ? 'page-item disabled' : 'page-item'">
+							<a class="page-link"
+							th:href="@{/marcas/listar(page=${pageMarca.pagina + 1}, dir=${pageMarca.direcao})}">Próxima</a>
+						</li>
+						<li class="page-item"><a class="page-link"
+							th:href="@{/marcas/listar(page=${pageMarca.totalDePaginas}, dir=${pageMarca.direcao})}"
+							tabindex="-1">Última</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<div th:replace="fragmentos/modal :: modal"></div>
+
+	</section>
 </body>
-</html>		
+</html>
