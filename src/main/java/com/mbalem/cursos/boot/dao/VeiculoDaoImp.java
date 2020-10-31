@@ -6,7 +6,7 @@ import com.mbalem.cursos.boot.domain.Veiculo;
 import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 @Repository
-public class VeiculoImp extends AbstractDao<Veiculo, Long> implements VeiculoDao {
+public class VeiculoDaoImp extends AbstractDao<Veiculo, Long> implements VeiculoDao {
 
 	@Override
 	public PaginacaoUtil<Veiculo> buscaPaginada(int pagina, String direcao) {

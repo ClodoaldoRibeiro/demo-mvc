@@ -1,5 +1,7 @@
 package com.mbalem.cursos.boot.web.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mbalem.cursos.boot.domain.TiposVeiculos;
 import com.mbalem.cursos.boot.service.TiposVeiculosService;
+import com.mbalem.cursos.boot.util.PaginacaoUtil;
 
 @Controller
 @RequestMapping("/tiposVeiculos")
@@ -28,8 +32,16 @@ public class TipoVeiculoController {
 	}
 
 	@GetMapping("/listar")
-	public String listar(ModelMap model) {
-		model.addAttribute("tiposVeiculos", tiposVeiculosService.buscarTodos());
+	public String listar(ModelMap model, @RequestParam("page") Optional<Integer> page,
+			@RequestParam("dir") Optional<String> dir) {
+
+		int paginaAtual = page.orElse(1);
+		String ordem = dir.orElse("asc");
+
+		PaginacaoUtil<TiposVeiculos> pageTiposVeiculos = tiposVeiculosService.buscaPorPagina(paginaAtual, ordem);
+
+		model.addAttribute("pageTiposVeiculos", pageTiposVeiculos);
+
 		return "tipoVeiculo/lista";
 	}
 
@@ -62,18 +74,18 @@ public class TipoVeiculoController {
 		attributes.addFlashAttribute("success", "Tipo de Veículo alterado com sucesso.");
 		return "redirect:/tiposVeiculos/cadastrar";
 	}
-	
+
 	@GetMapping("/excluir/{id}")
-	public String excluir(@PathVariable("id") Long id, ModelMap modelMap) {
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
 
 		if (tiposVeiculosService.tiposVeiculosTemVeiculos(id)) {
-			modelMap.addAttribute("fail", "Tipo de Veículo não removido. Possui Veículo(s) vinculado(s).");
+			attr.addFlashAttribute("fail", "Tipo de Veículo não removido. Possui Veículo(s) vinculado(s).");
 		} else {
 			tiposVeiculosService.Excluir(id);
-			modelMap.addAttribute("success", "Tipo de Veículo excluído com sucesso.");
+			attr.addFlashAttribute("success", "Tipo de Veículo excluído com sucesso.");
 		}
 
-		return listar(modelMap);
+		return "redirect:/tiposVeiculos/listar";
 	}
 
 }
