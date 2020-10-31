@@ -44,7 +44,7 @@ public class CombustivelServiceImp implements CombustivelService {
 
 	@Override
 	public PaginacaoUtil<Combustivel> buscaPorPagina(int paginaAtual, String ordem) {
-		return null;
+		return combustivelDao.buscaPaginada(paginaAtual, ordem);
 	}
 
 	@Override

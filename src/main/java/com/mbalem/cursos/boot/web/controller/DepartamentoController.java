@@ -38,9 +38,6 @@ public class DepartamentoController {
 		int paginaAtual = page.orElse(1);
 		String ordem = dir.orElse("asc");
 
-		System.out.println("paginaAtual: " + paginaAtual);
-		System.out.println("ordem: " + ordem);
-
 		PaginacaoUtil<Departamento> pageDerpartamento = derpartamentoService.buscaPorPagina(paginaAtual, ordem);
 
 		model.addAttribute("pageDepartamento", pageDerpartamento);
