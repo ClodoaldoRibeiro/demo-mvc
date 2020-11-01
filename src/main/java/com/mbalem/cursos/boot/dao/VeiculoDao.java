@@ -14,6 +14,8 @@ public interface VeiculoDao {
 	void delete(Long id);
 
 	Veiculo findById(Long id);
+	
+	boolean findByChassi(String classi);
 
 	List<Veiculo> findAll();
 

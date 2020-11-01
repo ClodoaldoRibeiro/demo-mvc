@@ -47,4 +47,9 @@ public class VeiculoServiceImp implements VeiculoService {
 		return veiculoDao.buscaPaginada(paginaAtual, ordem);
 	}
 
+	@Override
+	public boolean chassiCadastrado(String chassi) {
+		return veiculoDao.findByChassi(chassi);
+	}
+
 }

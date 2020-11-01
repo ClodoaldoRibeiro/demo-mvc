@@ -16,6 +16,8 @@ public interface VeiculoService {
 	Veiculo buscarPorId(Long id);
 
 	List<Veiculo> buscarTodos();
+	
+	boolean chassiCadastrado(String chassi);
 
 	PaginacaoUtil<Veiculo> buscaPorPagina(int paginaAtual, String ordem);
 }

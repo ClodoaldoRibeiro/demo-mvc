@@ -12,13 +12,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "VEICULOS")
 public class Veiculo extends AbstractEntity<Long> {
 
-	@NotBlank (message = "Informe o modelo do seu veículo")
+	@NotBlank(message = "Informe o modelo do seu veículo")
 	@Size(max = 60, min = 3)
 	@Column(nullable = false)
 	private String modelo;
@@ -46,7 +45,7 @@ public class Veiculo extends AbstractEntity<Long> {
 	@Digits(integer = 5, fraction = 0)
 	private Integer anoModelo;
 
-	@Column( length = 2)
+	@Column(length = 2)
 	@Enumerated(EnumType.STRING)
 	private UF uf;
 
