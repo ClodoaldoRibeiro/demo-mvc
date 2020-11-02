@@ -1,10 +1,10 @@
 [![Linkedin](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=Linkedin)](https://www.linkedin.com/in/clodoaldo-ribeiro-2a3049a6/) [![Gmail](https://img.shields.io/badge/-Gmail-c14438?style=for-the-badge&logo=Gmail&logoColor=white&link=mailto:clodoribeiro38@gmail.com)](mailto:clodoribeiro38@gmail.com)
 
-#Demo-mvc
+# Demo-mvc
 
 Este é um projeto desenvolvido com Spring Boot, com o intuíto de aprimorar os meus conchecimentos na liguagem
  
-##Sobre o Projeto
+## Sobre o Projeto
 
  As tecnologias usadas até o momento são:
 
