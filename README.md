@@ -1,6 +1,6 @@
 [![Linkedin](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=Linkedin)](https://www.linkedin.com/in/clodoaldo-ribeiro-2a3049a6/) [![Gmail](https://img.shields.io/badge/-Gmail-c14438?style=for-the-badge&logo=Gmail&logoColor=white&link=mailto:clodoribeiro38@gmail.com)](mailto:clodoribeiro38@gmail.com)
 
-# Demo-mvc
+# demo-mvc
 
 Este é um projeto desenvolvido com Spring Boot, com o intuíto de aprimorar os meus conchecimentos na liguagem
  
@@ -14,3 +14,13 @@ Este é um projeto desenvolvido com Spring Boot, com o intuíto de aprimorar os 
 * [Java SE Development Kit 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) - JDK Java para o desenvolvimento
 * [Bootstrap 4](https://getbootstrap.com/) - Ferramenta para o esenvolvimento de componentes de interface e front-end.
 * [Thymeleaf 3.0.11](https://www.thymeleaf.org/) - Template Engine.
+
+## Instruções de uso
+Você irá baixar o projeto é abrir em seu ambiente de desenvolvimento, ele rora na porta 8080, então poderar localizar o sistema da seguinte forma [localhost:8080](localhost:8080).
+
+
+## License
+Copyright (c) CTI Sistemas. Todos os direitos reservados.
+
+Licenciado sob a licença MIT.
+
