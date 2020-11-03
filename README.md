@@ -19,6 +19,15 @@ Este é um projeto desenvolvido com Spring Boot, com o intuíto de aprimorar os 
 Você irá baixar o projeto é abrir no seu ambiente de desenvolvimento, ele roda na porta 8080.
 Você poderá localizar o sistema da seguinte forma [localhost:8080](localhost:8080) no seu navegador.
 
+## Modelagem
+
+<p align="center">
+<img src="https://github.com/ClodoaldoRibeiro/demo-mvc/blob/master/modelo_dados/Modelagem.png" alt="ClodoaldoRibeiro"/>
+<h5 align="center">Modelo: Modelagem de banco de dados</h5>
+</p>
+
+
+
 ## Telas
 
 <p align="center">
