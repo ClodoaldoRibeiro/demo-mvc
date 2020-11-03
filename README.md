@@ -16,7 +16,8 @@ Este é um projeto desenvolvido com Spring Boot, com o intuíto de aprimorar os 
 * [Thymeleaf 3.0.11](https://www.thymeleaf.org/) - Template Engine.
 
 ## Instruções de uso
-Você irá baixar o projeto é abrir em seu ambiente de desenvolvimento, ele rora na porta 8080, então poderar localizar o sistema da seguinte forma [localhost:8080](localhost:8080).
+Você irá baixar o projeto é abrir no seu ambiente de desenvolvimento, ele roda na porta 8080.
+Você poderá localizar o sistema da seguinte forma [localhost:8080](localhost:8080) no seu navegador.
 
 ## Telas
 
