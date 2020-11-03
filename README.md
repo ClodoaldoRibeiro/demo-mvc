@@ -16,11 +16,50 @@ Este é um projeto desenvolvido com Spring Boot, com o intuíto de aprimorar os 
 * [Thymeleaf 3.0.11](https://www.thymeleaf.org/) - Template Engine.
 
 ## Instruções de uso
-Você irá baixar o projeto é abrir em seu ambiente de desenvolvimento, ele rora na porta 8080, então poderar localizar o sistema da seguinte forma [localhost:8080](localhost:8080).
+Você irá baixar o projeto é abrir no seu ambiente de desenvolvimento, ele roda na porta 8080.
+Você poderá localizar o sistema da seguinte forma [localhost:8080](localhost:8080) no seu navegador.
+
+## Telas
+
+<p align="center">
+<img src="https://github.com/ClodoaldoRibeiro/demo-mvc/blob/master/telas/home.png" alt="ClodoaldoRibeiro"/>
+<h5 align="center">Tela 1: Home </h5>
+</p>
+
+<p align="center">
+<img src="https://github.com/ClodoaldoRibeiro/demo-mvc/blob/master/telas/lista-departamentos.png" alt="ClodoaldoRibeiro"/>
+<h5 align="center">Tela 2: Listar de departamentos </h5>
+</p>
+
+<p align="center">
+<img src="https://github.com/ClodoaldoRibeiro/demo-mvc/blob/master/telas/listar-cargos.png" alt="ClodoaldoRibeiro"/>
+<h5 align="center">Tela 3: Listar de cargos </h5>
+</p>
+
+<p align="center">
+<img src="https://github.com/ClodoaldoRibeiro/demo-mvc/blob/master/telas/cadastrar-funcionario.png" alt="ClodoaldoRibeiro"/>
+<h5 align="center">Tela 4: Cadastrar funcionário </h5>
+</p>
+
+
+<p align="center">
+<img src="https://github.com/ClodoaldoRibeiro/demo-mvc/blob/master/telas/cadastrar-veiculo.png" alt="ClodoaldoRibeiro"/>
+<h5 align="center">Tela 5: Cadastrar veículos </h5>
+</p>
+
+* [Todas as Imagens](https://github.com/ClodoaldoRibeiro/demo-mvc/tree/master/telas)
 
 
 ## License
 Copyright (c) CTI Sistemas. Todos os direitos reservados.
 
 Licenciado sob a licença MIT.
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/lucasbarrossantos/vagasonline.svg?style=flat-square
+[contributors-url]: https://github.com/lucasbarrossantos/vagasonline/graphs/contributors
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/clodoaldo-ribeiro-2a3049a6/
 
